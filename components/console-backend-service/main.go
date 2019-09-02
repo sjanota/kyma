@@ -104,6 +104,8 @@ func exitOnError(err error, context string) {
 	}
 }
 
+
+
 func parseFlags(cfg config) {
 	if cfg.Verbose {
 		err := flag.Set("stderrthreshold", "INFO")
