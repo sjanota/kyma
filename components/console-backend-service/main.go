@@ -150,6 +150,8 @@ func runServer(stop <-chan struct{}, cfg config, schema graphql.ExecutableSchema
 		}),
 		handler.Tracer(tracing.New()),
 	)
+	
+	
 	router.HandleFunc("/graphql", tracing.NewWithParentSpan(cfg.Tracing.ServiceSpanName, graphQLHandler))
 	serverHandler := cors.New(cors.Options{
 		AllowedOrigins: allowedOrigins,
