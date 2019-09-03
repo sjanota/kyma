@@ -13,10 +13,10 @@ DIRS_TO_IGNORE = go list ./... | grep "$(VERIFY_IGNORE)"
 
 .PHONY: release resolve build build-image push-image pull-licenses
 
-DOCKER_CREATE_OPTS = --rm -t -w $(WORKSPACE_DIR) -v $(shell go env GOCACHE):$(IMG_GOCACHE):delegated -v $(shell go env GOPATH)/pkg/dep:$(IMG_GOPATH)/pkg/dep:delegated $(BUILDPACK)
+DOCKER_CREATE_OPTS = --rm -w $(WORKSPACE_DIR) -v $(shell go env GOCACHE):$(IMG_GOCACHE):delegated -v $(shell go env GOPATH)/pkg/dep:$(IMG_GOPATH)/pkg/dep:delegated $(BUILDPACK)
 
 define buildpack-mount
-	@docker run -i -v $(LOCAL_DIR):$(WORKSPACE_DIR):delegated $(DOCKER_CREATE_OPTS) make $(1)-local
+	docker run -v $(LOCAL_DIR):$(WORKSPACE_DIR):delegated $(DOCKER_CREATE_OPTS) make $(1)-local
 endef
 
 define buildpack-cp-ro
