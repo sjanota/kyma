@@ -10,3 +10,6 @@ VERIFY_IGNORE := /vendor\|/automock\|/testdata\|/pkg
 .PHONY: path-to-referenced-charts
 path-to-referenced-charts:
 	@echo "resources/core"
+
+
+
